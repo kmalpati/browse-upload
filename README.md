@@ -16,5 +16,9 @@ $ npm start
 ```
 
 Server will be up and running on port 4000. You can access the url http://localhost:4000
+
 This will show the listing that is current under the "content" folder.
+
 To upload the files to this new server you can access the url http://localhost:4000/upload
+
+All uploaded files will be listed under "content" folder on you server.
