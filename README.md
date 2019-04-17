@@ -1,5 +1,5 @@
 # browse-upload
-Simple nodejs app to upload the files to a server and browse it through http
+Simple nodejs app to upload the files to a server and browse it through http. Uses serve-index node module to get the browsing capability.
 
 ## How to install
 
