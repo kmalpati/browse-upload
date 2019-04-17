@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Upload File</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+    <style>
+        #uploadForm{
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+        input.btn{
+            flex: 0.8;
+        }
+        button.btn{
+            flex: 0.15;
+        }
+        body{text-align:center;}
+        form{display:block;border:1px solid black;padding:20px;}
+    </style>
+
+</head>
+
+<body>
+    <h1>Upload files</h1>
+
+    <form action="/fileupload" method="post" enctype="multipart/form-data">
+        <input type="file" name="files" class="btn btn-primary" id="file" multiple>
+        <button class="btn btn-primary" type="submit" style="border-radius: 4px;">Upload</button>
+    </form>
+
+    Percent Complete: <span id="status">0</span>%
+
+    <script type="text/javascript">
+        document.getElementById("file").value = "";
+    </script>
+    
+
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script>
+        var $status = $('#status');
+        $('form').on('submit', function() {
+            var longPoll = setInterval(function () {
+                $.get('/checkstatus').then(function (status) {
+                    $status.text(status);
+                    console.log("Inside")
+                    if (parseInt(status) === 100) {
+                        clearInterval(longPoll);
+                    }
+                });
+            }, 500);
+        });
+    </script>
+</body>
+</html>
